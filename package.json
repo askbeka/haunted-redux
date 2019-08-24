@@ -1,0 +1,81 @@
+{
+  "name": "haunted-redux",
+  "version": "1.0.0",
+  "main": "haunted-redux.js",
+  "module": "haunted-redux.js",
+  "unpkg": "haunted-redux.bundle.js",
+  "types": "haunted-redux.d.ts",
+  "sideEffects": false,
+  "files": [
+    "haunted-redux.js",
+    "haunted-redux.d.ts",
+    "Context.js",
+    "hooks/*"
+  ],
+  "repository": "https://github.com/askbeka/haunted-redux.git",
+  "author": "Beknar Askarov <beknaraskarov@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "haunted": "^4.5.2",
+    "redux": "^4.0.4"
+  },
+  "devDependencies": {
+    "@open-wc/demoing-storybook": "^0.3.0",
+    "@open-wc/eslint-config": "^1.0.0",
+    "@open-wc/prettier-config": "^0.1.10",
+    "@open-wc/testing": "^0.11.1",
+    "@open-wc/testing-karma": "^3.0.0",
+    "deepmerge": "^4.0.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-tree-shaking": "^1.7.4",
+    "haunted": "^4.5.2",
+    "husky": "^1.0.0",
+    "karma": "^4.2.0",
+    "lint-staged": "^8.0.0",
+    "redux": "^4.0.4",
+    "rollup": "^1.20.1"
+  },
+  "scripts": {
+    "test": "karma start --coverage",
+    "test:watch": "karma start --auto-watch=true --single-run=false",
+    "test:update-snapshots": "karma start --update-snapshots",
+    "test:prune-snapshots": "karma start --prune-snapshots",
+    "test:compatibility": "karma start --compatibility all --coverage",
+    "lint:eslint": "eslint --ext .js,.html . --ignore-path .gitignore",
+    "format:eslint": "eslint --ext .js,.html . --fix --ignore-path .gitignore",
+    "lint:prettier": "prettier \"**/*.js\" --check --ignore-path .gitignore",
+    "format:prettier": "prettier \"**/*.js\" --write --ignore-path .gitignore",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "format": "npm run format:eslint && npm run format:prettier",
+    "test:compatibility:watch": "karma start --compatibility all --auto-watch=true --single-run=false",
+    "site:build": "npm run storybook:build",
+    "storybook": "start-storybook -p 9001",
+    "storybook:build": "build-storybook -o _site -s storybook-static"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@open-wc/eslint-config",
+      "eslint-config-prettier"
+    ],
+    "plugins": [
+      "tree-shaking"
+    ]
+  },
+  "prettier": "@open-wc/prettier-config",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "react-redux": "^7.1.0"
+  }
+}
